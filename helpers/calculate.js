@@ -17,14 +17,20 @@ const toRad = x => {
 }
 
 const calculatelesserId = (distances) => {
-    let menor = distances[0].distance;
     let menorId = 0;
+    let arrdistances = [];
+
     for (let i = 0; i < distances.length; i++) {
-        if(distances[i].distance < menor){
-            menor = distances[i].distance;
+        arrdistances.push(distances[i].distance);
+    }
+
+    const min = Math.min(...arrdistances);
+    for (let i = 0; i < distances.length; i++) {
+        if(distances[i].distance === min){
             menorId = distances[i].id;
         }
     }
+    
     return menorId;
 }
 

@@ -87,7 +87,7 @@ exports.getPostaCloser = async (req,res) => {
             });
         }
         let menorId = calculatelesserId(distances);
-        const postaCloser = await Posta.findOne({id:menorId});
+        const postaCloser = await Posta.findOne({where:{id:menorId}});
         res.send({message:'Posta mas cercana',data:postaCloser})
     } catch (error) {
         res.status(500).send({message:error.message});

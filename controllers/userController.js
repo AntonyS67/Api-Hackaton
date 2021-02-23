@@ -13,7 +13,7 @@ exports.getUsers = async (req,res) => {
 
 exports.create = async (req,res) => {
     try {
-        const user = await User.findOne({cui:req.body.cui});
+        const user = await User.findOne({where:{cui:req.body.cui}});
         if(user){
             return res.status(401).send({message:'Usuario ya existe'});
         }
@@ -36,7 +36,7 @@ exports.create = async (req,res) => {
 exports.signinUser = async (req,res) => {
     const {email,password} = req.body;
     try {
-        const user = await User.findOne({email});
+        const user = await User.findOne({where:{email:email}});
         if(user){
             const isSame = await bcrypt.compare(password,user.password);
             if(isSame){
